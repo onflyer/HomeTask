@@ -3,3 +3,20 @@ workflows:
     name: Hello world workflow
     scripts:
         - echo "Hello World!"
+ios-native:
+  environment:
+    vars:
+      BUNDLE_ID: "com.onflyer.HomeTask"
+      XCODE_WORKSPACE: "HomeTask.xcodeproj" # <-- Name of your Xcode workspace
+      XCODE_SCHEME: "HomeTask" # <-- Name of your Xcode scheme
+scripts:
+  - name: Build ipa for distribution
+    script: |
+      xcode-project build-ipa \
+        --project "$CM_BUILD_DIR/$XCODE_PROJECT" \
+        --scheme "$XCODE_SCHEME"
+artifacts:
+  - build/ios/ipa/*.ipa
+  - /tmp/xcodebuild_logs/*.log
+  - $HOME/Library/Developer/Xcode/DerivedData/**/Build/**/*.app
+  - $HOME/Library/Developer/Xcode/DerivedData/**/Build/**/*.dSYM

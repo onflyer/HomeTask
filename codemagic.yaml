@@ -2,7 +2,7 @@ workflows:
   ios-project-debug: # Workflow ID
     name: iOS Debug # Workflow name
     environment:
-      xcode: 15.3
+      xcode: latest
     vars:
       BUNDLE_ID: "com.onflyer.HomeTask"
       XCODE_WORKSPACE: "HomeTask.xcodeproj" 

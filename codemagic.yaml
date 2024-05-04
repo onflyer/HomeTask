@@ -9,7 +9,7 @@ workflows:
       XCODE_SCHEME: "HomeTask" # <-- Name of your Xcode scheme
 scripts:
   - name: Build debug app
-        script: |
+     script: |
           xcodebuild build -project "$XCODE_PROJECT" \
           -scheme "$XCODE_SCHEME" \
           CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO CODE_SIGNING_ALLOWED=NO - name: Build ipa for distribution

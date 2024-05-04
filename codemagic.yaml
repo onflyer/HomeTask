@@ -1,15 +1,18 @@
 workflows:
-  hello-world:
-    name: Hello world workflow
-    scripts:
-        - echo "Hello World!"
-ios-native:
-  environment:
+  ios-project-debug: # Workflow ID
+    name: iOS Debug # Workflow name
+    environment:
+      xcode: 15.3
     vars:
       BUNDLE_ID: "com.onflyer.HomeTask"
       XCODE_WORKSPACE: "HomeTask.xcodeproj" # <-- Name of your Xcode workspace
       XCODE_SCHEME: "HomeTask" # <-- Name of your Xcode scheme
 scripts:
+  - name: Build debug app
+        script: |
+          xcodebuild build -project "$XCODE_PROJECT" \
+          -scheme "$XCODE_SCHEME" \
+          CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO CODE_SIGNING_ALLOWED=NO - name: Build ipa for distribution
   - name: Build ipa for distribution
     script: |
       xcode-project build-ipa \

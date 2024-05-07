@@ -24,9 +24,9 @@ workflows:
           CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO CODE_SIGNING_ALLOWED=NO
       - name: Build ipa for distribution
         script: |
-      xcode-project build-ipa \
-        --project "$CM_BUILD_DIR/$XCODE_WORKSPACE" \
-        --scheme "$XCODE_SCHEME"
+          xcode-project build-ipa \
+            --project "$CM_BUILD_DIR/$XCODE_WORKSPACE" \
+            --scheme "$XCODE_SCHEME"
     artifacts:
       - build/ios/ipa/*.ipa
       - /tmp/xcodebuild_logs/*.log

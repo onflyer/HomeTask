@@ -1,13 +1,20 @@
 workflows:
   ios-cache-workflow:
     name: iOS HomeTask
+    integrations:
+      app_store_connect: Codemagic
     environment:
       xcode: latest # <-- set to specific version e.g. 14.3, 15.0 to avoid unexpected updates.
+       ios_signing:
+        distribution_type: ad_hoc # or: ad_hoc | development | enterprise
+        bundle_identifier: com.onflyer.HomeTask
       vars:
         BUNDLE_ID: "com.onflyer.HomeTask" # replace with your app bundle
         XCODE_PROJECT: "HomeTask.xcodeproj"
         XCODE_SCHEME: "HomeTask"
     scripts:
+      - name: Set up code signing settings on Xcode project
+        script: xcode-project use-profiles
       - name: Build debug app
         script: |
           xcodebuild build -project "$XCODE_PROJECT" \

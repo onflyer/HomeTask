@@ -5,7 +5,7 @@ workflows:
       app_store_connect: Codemagic
     environment:
       xcode: latest
-       ios_signing:
+      ios_signing:
         distribution_type: ad_hoc # or: ad_hoc | development | enterprise
         bundle_identifier: com.onflyer.HomeTask
       vars:
